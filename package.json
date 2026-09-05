@@ -1,16 +1,19 @@
 {
-  "name": "sites-project",
-  "version": "0.1.0",
+  "name": "tiny-toolbox",
+  "version": "0.2.0",
   "private": true,
   "engines": {
     "node": ">=22.13.0"
   },
   "scripts": {
     "dev": "vinext dev",
-    "build": "vinext build",
-    "start": "wrangler dev --config dist/server/wrangler.json",
+    "build": "vinext build && node --experimental-strip-types scripts/prepare-static.ts",
+    "start": "python3 serve.py",
     "lint": "oxlint",
-    "format": "oxfmt"
+    "format": "oxfmt",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "check": "npm run typecheck && npm run lint && npm test && npm run build"
   },
   "dependencies": {
     "react": "19.2.6",
@@ -51,5 +54,6 @@
     "vite": "8.0.13",
     "wrangler": "4.92.0"
   },
-  "type": "module"
+  "type": "module",
+  "description": "随手工具箱：手机优先、浏览器本地处理的日常小工具站"
 }
