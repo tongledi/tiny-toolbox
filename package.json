@@ -13,7 +13,8 @@
     "format": "oxfmt",
     "typecheck": "tsc --noEmit",
     "test": "node --experimental-strip-types --test tests/*.test.ts",
-    "check": "npm run typecheck && npm run lint && npm test && npm run build"
+    "check": "npm run typecheck && npm run lint && npm test && npm run build",
+    "build:pages": "node scripts/build-pages.mjs"
   },
   "dependencies": {
     "react": "19.2.6",

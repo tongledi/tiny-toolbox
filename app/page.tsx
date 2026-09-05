@@ -1,3 +1,4 @@
+import { sitePath } from '@/lib/site-path';
 import { tools } from '@/lib/tools';
 export default function Home() {
   return (
@@ -21,7 +22,7 @@ export default function Home() {
         </div>
         <div className="tool-grid">
           {tools.map((tool) => (
-            <a key={tool.slug} className="tool-card" href={tool.href}>
+            <a key={tool.slug} className="tool-card" href={sitePath(tool.href)}>
               <div className="card-top">
                 <span className="tool-symbol" aria-hidden="true">
                   {tool.symbol}

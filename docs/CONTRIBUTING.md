@@ -18,7 +18,7 @@
 
 主分支为 `main`。后续功能建议在功能分支开发，通过 PR 和自动检查合入。提交说明写清实际行为变化。不要提交 `.env`、令牌、日志、PID、依赖目录和构建产物。
 
-`npm run build` 生成可独立托管的 `dist/client/`。目录路由使用末尾斜杠，便于 Python 或一般静态服务器提供对应的 `index.html`。GitHub Actions 只做检查和构建产物保存，部署单独决定。
+`npm run build` 生成可独立托管的 `dist/client/`。目录路由使用末尾斜杠，便于 Python 或一般静态服务器提供对应的 `index.html`。GitHub Actions 在 main 更新时执行检查并通过 Pages 工作流发布公网网站。
 
 现有生成的 `components/ui/` 和 `hooks/use-mobile.ts` 保留上游实现，不参与项目 lint；TypeScript 仍检查整个工程。项目 lint 针对站点和功能代码。转盘的两处 hydration/storage 状态更新带有局部 React 编译器规则例外及原因。
 

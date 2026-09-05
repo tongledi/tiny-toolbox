@@ -2,6 +2,8 @@
 
 **小事，顺手解决。** 手机优先、无需注册的小工具站，当前从「随它转」随机选择转盘开始。
 
+公网访问：**https://tongledi.github.io/tiny-toolbox/**
+
 ## 已有工具
 
 | 工具   | 地址                     | 功能                                                   |
@@ -61,7 +63,7 @@ npm run build
 npm run check
 ```
 
-GitHub Actions 对 `main` 的推送及 PR 执行同样的检查，并保留静态构建产物 7 天。CI 不自动发布网站。新增工具参见 [开发指南](docs/CONTRIBUTING.md)。
+GitHub Actions 对 `main` 的推送及 PR 执行同样的检查，并保留静态构建产物 7 天。另一个 Pages 工作流会在推送 main 时检查、构建并自动更新公网网站。新增工具参见 [开发指南](docs/CONTRIBUTING.md)。
 
 ## 数据与兼容
 
@@ -72,4 +74,8 @@ GitHub Actions 对 `main` 的推送及 PR 执行同样的检查，并保留静�
 - 兼容支持当前 JavaScript/CSS 的手机浏览器；已处理减少动画偏好。iPhone 微信内实际交互仍需真机验收。
 - 转盘保留可选的 `start_wheel_spin` WebMCP 接口。无支持该接口的验证环境，尚未验证此接口；普通浏览器不依赖它。
 
-项目保持私有，暂未选择开源许可证。对外开放或公网部署前另行决定许可证、域名和托管方式。
+仓库已按所有者要求公开，暂未选择开源许可证。公网站点使用 GitHub Pages，原 Sites 地址受当前访问网络的 Cloudflare 拦截，不作为主要入口。
+
+## GitHub Pages 发布
+
+`npm run build:pages` 将资源和导航适配 `/tiny-toolbox/` 路径，产物位于 `outputs/github-pages/`。`.github/workflows/pages.yml` 在 `main` 更新后自动检查并发布。普通 `npm run build` 仍产生根路径版本，可用于本地服务和 Sites。手动构建 Pages 后如继续使用本地服务，请再执行 `npm run build` 恢复本地版本。

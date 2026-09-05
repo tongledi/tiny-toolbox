@@ -1,5 +1,6 @@
 'use client';
 
+import { sitePath } from '@/lib/site-path';
 import { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
@@ -159,7 +160,7 @@ export default function DecisionWheel() {
   return (
     <div className="wheel-tool">
       <nav className="breadcrumb" aria-label="面包屑">
-        <a href="/">全部工具</a>
+        <a href={sitePath('/')}>全部工具</a>
         <span aria-hidden="true">/</span>
         <span>随它转</span>
       </nav>

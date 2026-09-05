@@ -1,3 +1,4 @@
+import { sitePath } from '@/lib/site-path';
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 export const metadata: Metadata = {
@@ -7,7 +8,7 @@ export const metadata: Metadata = {
   },
   description:
     '手机优先的日常小工具站。无需注册，打开即用，从随机选择转盘开始。',
-  icons: { icon: '/favicon.svg' },
+  icons: { icon: sitePath('/favicon.svg') },
 };
 export const viewport: Viewport = {
   width: 'device-width',
@@ -27,13 +28,17 @@ export default function RootLayout({
         </a>
         <div className="shell">
           <header className="topbar">
-            <a className="brand" href="/" aria-label="随手工具箱首页">
+            <a
+              className="brand"
+              href={sitePath('/')}
+              aria-label="随手工具箱首页"
+            >
               <span className="brand-mark" aria-hidden="true">
                 ↗
               </span>
               随手工具箱
             </a>
-            <a className="home-link" href="/">
+            <a className="home-link" href={sitePath('/')}>
               全部工具
             </a>
           </header>
