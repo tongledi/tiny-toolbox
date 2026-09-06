@@ -1,5 +1,6 @@
 'use client';
 
+import PresetLibrary from './preset-library';
 import { sitePath } from '@/lib/site-path';
 import { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -172,6 +173,18 @@ export default function DecisionWheel() {
         </h1>
         <p>写下选项，把这一刻交给运气。</p>
       </div>
+      <PresetLibrary
+        options={items}
+        disabled={!ready || spinning}
+        onLoad={(preset) => {
+          if (busy.current) return;
+          setDraft(preset.options.join('\n'));
+          setOptions([...preset.options]);
+          setRotation(0);
+          setResult('');
+          setError('');
+        }}
+      />
       <div className="workspace">
         <section className="wheel-panel" aria-label="随机选择转盘">
           <div className="wheel-heading">

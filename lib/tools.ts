@@ -17,6 +17,6 @@ export const tools: Tool[] = [
     category: '随机决策',
     href: '/tools/decision-wheel/',
     symbol: '↻',
-    details: ['自定义选项', '等概率抽取', '自动暂存'],
+    details: ['自定义选项', '等概率抽取', '保存多组转盘'],
   },
 ];
