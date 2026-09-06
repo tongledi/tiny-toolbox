@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     template: '%s | 随手工具箱',
   },
   description:
-    '手机优先的日常小工具站。无需注册，打开即用，从随机选择转盘开始。',
+    '手机优先的日常小工具站。无需注册，打开即用，包含随机选择转盘与单位比价。',
   icons: { icon: sitePath('/favicon.svg') },
 };
 export const viewport: Viewport = {
