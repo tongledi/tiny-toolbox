@@ -173,18 +173,6 @@ export default function DecisionWheel() {
         </h1>
         <p>写下选项，把这一刻交给运气。</p>
       </div>
-      <PresetLibrary
-        options={items}
-        disabled={!ready || spinning}
-        onLoad={(preset) => {
-          if (busy.current) return;
-          setDraft(preset.options.join('\n'));
-          setOptions([...preset.options]);
-          setRotation(0);
-          setResult('');
-          setError('');
-        }}
-      />
       <div className="workspace">
         <section className="wheel-panel" aria-label="随机选择转盘">
           <div className="wheel-heading">
@@ -325,6 +313,18 @@ export default function DecisionWheel() {
             {dirty || !options.length ? '生成转盘' : '更新转盘'}{' '}
             <span aria-hidden="true">↗</span>
           </Button>
+          <PresetLibrary
+            options={items}
+            disabled={!ready || spinning}
+            onLoad={(preset) => {
+              if (busy.current) return;
+              setDraft(preset.options.join('\n'));
+              setOptions([...preset.options]);
+              setRotation(0);
+              setResult('');
+              setError('');
+            }}
+          />
           <div className="save-note">
             <span className="save-dot" />
             {!ready

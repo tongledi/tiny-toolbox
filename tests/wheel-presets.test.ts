@@ -99,3 +99,30 @@ void test('full collections allow updates; storage failures do not report succes
   assert.throws(() => removePreset(unavailable, '0'));
   assert.equal(storage.getItem(PRESETS_KEY), before);
 });
+
+void test('default names advance after saving and skip existing custom or numbered titles', async () => {
+  const { nextPresetName } =
+    await import('../features/decision-wheel/presets.ts');
+  const storage = memoryStorage();
+  assert.equal(nextPresetName([]), '转盘1');
+  savePreset(storage, { ...meal, name: nextPresetName(readPresets(storage)) });
+  assert.equal(nextPresetName(readPresets(storage)), '转盘2');
+  savePreset(storage, { ...meal, id: 'second', name: '转盘2' });
+  assert.equal(nextPresetName(readPresets(storage)), '转盘3');
+  assert.equal(
+    nextPresetName([
+      { ...meal, name: '晚饭' },
+      { ...meal, id: 'n', name: '转盘1' },
+    ]),
+    '转盘2',
+  );
+  assert.equal(nextPresetName([{ ...meal, name: '转盘2' }]), '转盘1');
+  // A fresh suggestion at submit avoids reusing a name taken by another tab.
+  const suggestionBeforeOtherTab = nextPresetName(readPresets(storage));
+  savePreset(storage, {
+    ...meal,
+    id: 'other-tab',
+    name: suggestionBeforeOtherTab,
+  });
+  assert.equal(nextPresetName(readPresets(storage)), '转盘4');
+});

@@ -62,3 +62,11 @@ export function removePreset(storage: StoragePort, id: string): WheelPreset[] {
   storage.setItem(PRESETS_KEY, JSON.stringify(next));
   return next;
 }
+
+/** Suggest the first unused numbered name, independent of the last opened wheel. */
+export function nextPresetName(presets: WheelPreset[]): string {
+  const names = new Set(presets.map((preset) => preset.name.trim()));
+  let number = 1;
+  while (names.has(`转盘${number}`)) number++;
+  return `转盘${number}`;
+}
